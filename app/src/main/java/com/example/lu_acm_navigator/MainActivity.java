@@ -38,17 +38,24 @@ public class MainActivity extends AppCompatActivity {
            }
            else
            {
-               DataBaseHelper dbHelper= new DataBaseHelper(MainActivity.this);
-               boolean result= dbHelper.CheckUserAuthentication(username,password);
-               if(result)
+               if(username.equals("admin") && password.equals("admin"))
                {
-                   Toast.makeText(MainActivity.this, "Login Successfully!", Toast.LENGTH_SHORT).show();
-                   Intent intent = new Intent(MainActivity.this,ContestDisplay.class);
+                   Intent intent = new Intent(MainActivity.this,AdminActivity.class);
                    startActivity(intent);
                }
-               else
-               {
-                   Toast.makeText(MainActivity.this, "Login Failed!", Toast.LENGTH_SHORT).show();
+               else {
+                   DataBaseHelper dbHelper= new DataBaseHelper(MainActivity.this);
+                   boolean result= dbHelper.CheckUserAuthentication(username,password);
+                   if(result)
+                   {
+                       Toast.makeText(MainActivity.this, "Login Successfully!", Toast.LENGTH_SHORT).show();
+                       Intent intent = new Intent(MainActivity.this,ContestDisplay.class);
+                       startActivity(intent);
+                   }
+                   else
+                   {
+                       Toast.makeText(MainActivity.this, "Login Failed!", Toast.LENGTH_SHORT).show();
+                   }
                }
            }
         });

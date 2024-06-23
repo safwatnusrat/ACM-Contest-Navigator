@@ -36,7 +36,7 @@ public class RegisterActivity extends AppCompatActivity {
            String confirmpassword =etConfirmPassword.getText().toString();
 
            if(password.equals(confirmpassword) && !username.isEmpty() && !password.isEmpty()){
-               Toast.makeText(RegisterActivity.this, "Well Done,Let me insert your info into DB", Toast.LENGTH_SHORT).show();
+               //Toast.makeText(RegisterActivity.this, "Well Done,Let me insert your info into DB", Toast.LENGTH_SHORT).show();
                DataBaseHelper dbHelper =new DataBaseHelper(RegisterActivity.this);
                boolean isinserted=dbHelper.insertUser(username, email, phone, password);
                if(isinserted)

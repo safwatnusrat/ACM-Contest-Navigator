@@ -7,4 +7,17 @@
     <string name="email">email</string>
     <string name="confirm_password">confirm password</string>
     <string name="phone">phone</string>
+    <string name="get_started">Get Started</string>
+    <string name="stay_informed_about_contests_and_never_miss_your_chance_to_compete">Stay informed about contests and never miss your chance to compete!</string>
+    <string name="welcome">Welcome!</string>
+    <string name="welcome_admin">Welcome Admin</string>
+    <string name="insert_contest">Insert Contest</string>
+    <string name="add_contest">Add Contest</string>
+    <string name="update_contest">Update Contest</string>
+    <string name="delete_contest">Delete Contest</string>
+    <string name="view_details">View Details</string>
+    <string name="contest_link">Contest Link</string>
+    <string name="contest_name">Contest name</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
 </resources>
