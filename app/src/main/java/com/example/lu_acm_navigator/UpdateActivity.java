@@ -1,6 +1,10 @@
 package com.example.lu_acm_navigator;
 
+import android.database.Cursor;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,16 +13,59 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class UpdateActivity extends AppCompatActivity {
-
+   private EditText NameEditText;
+   private EditText linkEditText;
+   private EditText dateEditText;
+   private EditText timeEditText;
+   private Button  searchButton;
+   private Button updateButton;
+   private DataBaseHelper dataBaseHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_update);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        NameEditText =findViewById(R.id.search_contest_name);
+        linkEditText =findViewById(R.id.search_contest_link);
+        dateEditText =findViewById(R.id.search_contest_date);
+        timeEditText =findViewById(R.id.search_contest_time);
+        searchButton =findViewById(R.id.btn_search);
+        updateButton =findViewById(R.id.btn_update);
+        dataBaseHelper = new DataBaseHelper(this);
+        searchButton.setOnClickListener(view -> searchcontest());
+        updateButton.setOnClickListener(view -> updatecontest());
+        
+
+
+
+
+    }
+
+    private void searchcontest () {
+        String Contestname=NameEditText.getText().toString();
+        if(Contestname.isEmpty()){
+            Toast.makeText(this,"Please Enter Correct Contest Name", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        Cursor cursor= dataBaseHelper.getContestbyname(Contestname);
+        if(cursor !=null && cursor.moveToFirst())
+        {
+            String link=cursor.getString(cursor.getColumnIndexOrThrow(DataBaseHelper.COL_CONTEST_LINK));
+            String date=cursor.getString(cursor.getColumnIndexOrThrow(DataBaseHelper.COL_DATE));
+            String time=cursor.getString(cursor.getColumnIndexOrThrow(DataBaseHelper.COL_TIME));
+            linkEditText.setText(String.valueOf(link));
+            dateEditText.setText(String.valueOf(date));
+            timeEditText.setText(String.valueOf(time));
+            cursor.close();
+            Toast.makeText(this,"Insert successfully",Toast.LENGTH_SHORT).show();
+
+
+        }
+        else {
+            Toast.makeText(this,"Insert the contest name properly",Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    private void updatecontest() {
     }
 }
