@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
     public static  final String DATABASE_NAME="Test_BD";
@@ -90,5 +91,29 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public Cursor getContestbyname(String contestname) {
         SQLiteDatabase db = this.getReadableDatabase();
         return db.rawQuery("SELECT * FROM " + TABLE_CONTEST + " WHERE " + COL_NAME + " = ?", new String[]{contestname});
+    }
+
+    public void updatecontest(String id,String name, String contestLink, String date, String time) {
+        SQLiteDatabase db= this.getWritableDatabase();
+        ContentValues Values = new ContentValues();
+        Values.put(COL_CONTEST_LINK, contestLink);
+        Values.put(COL_NAME, name);
+        Values.put(COL_DATE, date);
+        Values.put(COL_TIME, time);
+        db.update(TABLE_CONTEST, Values, COL_ID1+ " = ?", new String[]{String.valueOf(id)});
+
+        db.close();
+
+    }
+
+    public Cursor getnameofdeletecontest(String name) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery("SELECT * FROM " + TABLE_CONTEST + " WHERE " + COL_NAME + " = ?", new String[]{name});
+    }
+    public void deletecontest(String name) {
+        SQLiteDatabase db= this.getWritableDatabase();
+        db.delete(TABLE_CONTEST, COL_NAME+ " = ?", new String[]{name});
+
+        db.close();
     }
 }

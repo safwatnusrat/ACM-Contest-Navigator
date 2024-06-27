@@ -1,10 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
+    android:orientation="vertical"
+    android:background="@drawable/background3"
+    android:layout_marginStart="15dp"
+    android:layout_marginEnd="15dp"
+    android:layout_marginBottom="15dp"
+    android:layout_marginTop="15dp"
+    android:gravity="center"
     tools:context=".DeleteActivity">
+    <TextView
+        android:id="@+id/delete_contest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Delete the contest"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:layout_margin="10dp"
+        android:textSize="25dp"/>
+    <EditText
+        android:id="@+id/delete_contest_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Contest Name"
+        android:inputType="text"
+        android:layout_margin="10dp"
+        android:padding="20dp"/>
+    <EditText
+        android:id="@+id/delete_contest_link"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Contest Link"
+        android:inputType="textUri"
+        android:layout_margin="10dp"
+        android:padding="20dp"/>
+    <EditText
+        android:id="@+id/delete_contest_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Date"
+        android:inputType="date"
+        android:layout_margin="10dp"
+        android:padding="20dp"/>
+    <EditText
+        android:id="@+id/delete_contest_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Time"
+        android:inputType="time"
+        android:layout_margin="10dp"
+        android:padding="20dp"/>
+    <EditText
+        android:id="@+id/delete_contest_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Contest Id"
+        android:inputType="text"
+        android:layout_margin="10dp"
+        android:padding="20dp"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+       <Button
+        android:id="@+id/btn_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:padding="20dp"
+        android:layout_margin="10dp"
+           android:backgroundTint="@android:color/primary_text_dark"
+           android:textColor="@android:color/holo_purple"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Do you Want to delete?"
+            android:textSize="16dp"/>
+
+        <Button
+            android:id="@+id/btn_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete"
+            android:padding="16dp"
+
+            android:layout_margin="10dp"/>
+      </LinearLayout>
+
+
+</LinearLayout>

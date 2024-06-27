@@ -17,6 +17,7 @@ public class UpdateActivity extends AppCompatActivity {
    private EditText linkEditText;
    private EditText dateEditText;
    private EditText timeEditText;
+   private EditText contestidEditText;
    private Button  searchButton;
    private Button updateButton;
    private DataBaseHelper dataBaseHelper;
@@ -28,15 +29,12 @@ public class UpdateActivity extends AppCompatActivity {
         linkEditText =findViewById(R.id.search_contest_link);
         dateEditText =findViewById(R.id.search_contest_date);
         timeEditText =findViewById(R.id.search_contest_time);
+        contestidEditText =findViewById(R.id.search_contest_id);
         searchButton =findViewById(R.id.btn_search);
         updateButton =findViewById(R.id.btn_update);
         dataBaseHelper = new DataBaseHelper(this);
         searchButton.setOnClickListener(view -> searchcontest());
         updateButton.setOnClickListener(view -> updatecontest());
-        
-
-
-
 
     }
 
@@ -49,9 +47,11 @@ public class UpdateActivity extends AppCompatActivity {
         Cursor cursor= dataBaseHelper.getContestbyname(Contestname);
         if(cursor !=null && cursor.moveToFirst())
         {
+            String contestid=cursor.getString(cursor.getColumnIndexOrThrow(DataBaseHelper.COL_ID1));
             String link=cursor.getString(cursor.getColumnIndexOrThrow(DataBaseHelper.COL_CONTEST_LINK));
             String date=cursor.getString(cursor.getColumnIndexOrThrow(DataBaseHelper.COL_DATE));
             String time=cursor.getString(cursor.getColumnIndexOrThrow(DataBaseHelper.COL_TIME));
+            contestidEditText.setText(String.valueOf(contestid));
             linkEditText.setText(String.valueOf(link));
             dateEditText.setText(String.valueOf(date));
             timeEditText.setText(String.valueOf(time));
@@ -67,5 +67,16 @@ public class UpdateActivity extends AppCompatActivity {
     }
 
     private void updatecontest() {
+        String ContestLink=linkEditText.getText().toString();
+        String Name=NameEditText.getText().toString();
+        String Date=dateEditText.getText().toString();
+        String Time=timeEditText.getText().toString();
+        String Id=contestidEditText.getText().toString();
+        if(ContestLink.isEmpty()|| Name.isEmpty()|| Date.isEmpty()|| Time.isEmpty()){
+            Toast.makeText(this,"Fill all fileds",Toast.LENGTH_SHORT).show();
+        }
+
+        dataBaseHelper.updatecontest(Id,Name,ContestLink,Date,Time);
+
     }
 }

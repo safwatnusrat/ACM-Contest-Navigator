@@ -81,29 +81,34 @@
         android:drawablePadding="20dp"
         android:autofillHints="Password"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
-        <Button
-            android:id="@+id/btn_sign_up_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Login"
-            android:padding="20dp"
-            android:backgroundTint="@android:color/primary_text_dark"
-            android:textColor="@android:color/holo_purple"
-            android:layout_margin="10dp"/>
         <Button
             android:id="@+id/btn_sign_up_register"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Register"
             android:padding="20dp"
             android:layout_margin="10dp" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Already have an account?"
+                android:textSize="15dp"/>
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/btn_sign_up_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Login"
+                android:padding="20dp"
+                android:backgroundTint="@android:color/primary_text_dark"
+                android:textColor="@android:color/holo_purple"
+                android:layout_margin="10dp"/>
+        </LinearLayout>
 
 
 
