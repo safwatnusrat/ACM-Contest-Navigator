@@ -116,4 +116,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         db.close();
     }
+
+    public Cursor getallcontest() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery("SELECT * FROM " + TABLE_CONTEST ,null);
+    }
 }

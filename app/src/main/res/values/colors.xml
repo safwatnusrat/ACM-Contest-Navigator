@@ -2,4 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="light_pink">#FFA6C9</color>
+    <color name="light_purple">#E0BBE4</color>
+    <color name="pitch">#FFCCCB</color>
 </resources>

@@ -5,11 +5,14 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginStart="32dp"
-    android:layout_marginEnd="32dp"
+    android:layout_marginStart="15dp"
+    android:layout_marginEnd="15dp"
+    android:layout_marginTop="15dp"
+    android:layout_marginBottom="15dp"
     android:orientation="vertical"
     android:padding="16dp"
     android:gravity="center"
+    android:background="@drawable/background3"
     tools:context=".AddContestctivity">
     <TextView
         android:id="@+id/AddContest"
@@ -21,15 +24,6 @@
         android:layout_gravity="center"
         android:layout_marginBottom="25dp"/>
     <EditText
-        android:id="@+id/contestlink"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/contest_link"
-        android:minHeight="48dp"
-        android:layout_marginBottom="16dp"
-        android:inputType="textUri"
-        android:background="@android:drawable/editbox_background"/>
-    <EditText
         android:id="@+id/contestName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,6 +32,15 @@
         android:minHeight="48dp"
         android:inputType="text"
         android:background="@android:drawable/editbox_background" />
+    <EditText
+        android:id="@+id/contestlink"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/contest_link"
+        android:minHeight="48dp"
+        android:layout_marginBottom="16dp"
+        android:inputType="textUri"
+        android:background="@android:drawable/editbox_background"/>
     <EditText
         android:id="@+id/date"
         android:layout_width="match_parent"

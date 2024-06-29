@@ -21,4 +21,6 @@
     <string name="date">Date</string>
     <string name="time">Time</string>
     <string name="search_contest_by_name">Search Contest By Name</string>
+    <string name="upcoming_contests">Upcoming Contests</string>
+    <string name="view_contests">View Contests</string>
 </resources>
