@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.Toast;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
     public static  final String DATABASE_NAME="Test_BD";
@@ -13,6 +12,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_REGISTER ="register";
     public static final String TABLE_CONTEST ="contestadd" ;
     public static final String COL_ID ="id";
+    private static final String COL_FULLNAME ="fullname";
     public static final String COL_USERNAME="username";
     public static final String COL_EMAIL ="email";
     public static final String COL_PASSWORD ="password";
@@ -39,9 +39,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public boolean insertUser(String username, String email, String phone, String password) {
+    public boolean insertUser(String fullname,String username, String email, String phone, String password) {
         SQLiteDatabase db=this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_FULLNAME,fullname);
         contentValues.put(COL_USERNAME, username);
         contentValues.put(COL_EMAIL, email);
         contentValues.put(COL_PHONE, phone);
@@ -56,6 +57,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE " + TABLE_REGISTER +"("+
                 COL_ID+ " INTEGER PRIMARY KEY AUTOINCREMENT, "+
+                COL_FULLNAME +" TEXT, "+
                 COL_USERNAME +" TEXT, " +
                 COL_EMAIL +" TEXT, " +
                 COL_PASSWORD+" TEXT, " +

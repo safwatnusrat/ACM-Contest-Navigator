@@ -24,6 +24,7 @@ public class ViewDetailsActivity extends AppCompatActivity {
 
         databaseHelper = new DataBaseHelper(this);
         cnAdapter = new CnAdapter(this, null);
+        //adapter binding the data for recycleviewer
         upcomingContestsRecyclerView.setAdapter(cnAdapter);
 
         displayContests();

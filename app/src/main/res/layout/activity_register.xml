@@ -17,9 +17,22 @@
         android:layout_height="wrap_content"
         android:text="@string/sign_up"
         android:textSize="35dp"
-        android:layout_margin="50dp"
+        android:layout_margin="20dp"
         android:textStyle="bold"
         android:gravity="center"/>
+    <EditText
+        android:id="@+id/et_register_fullname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Fullname"
+        android:inputType="text"
+        android:layout_margin="10dp"
+        android:padding="15dp"
+        android:background="@android:drawable/editbox_background"
+        android:drawableLeft="@drawable/baseline_person_outline_24"
+        android:drawablePadding="20dp">
+
+    </EditText>
     <EditText
         android:id="@+id/et_register_username"
         android:layout_width="match_parent"
@@ -27,7 +40,7 @@
         android:hint="@string/username"
         android:inputType="text"
         android:layout_margin="10dp"
-        android:padding="20dp"
+        android:padding="15dp"
         android:background="@android:drawable/editbox_background"
         android:drawableLeft="@drawable/baseline_person_outline_24"
         android:drawablePadding="20dp"
@@ -39,7 +52,7 @@
         android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:layout_margin="10dp"
-        android:padding="20dp"
+        android:padding="15dp"
         android:background="@android:drawable/editbox_background"
         android:drawableLeft="@drawable/baseline_attach_email_24"
         android:drawablePadding="20dp"
@@ -51,7 +64,7 @@
         android:hint="@string/phone"
         android:inputType="number"
         android:layout_margin="10dp"
-        android:padding="20dp"
+        android:padding="15dp"
         android:background="@android:drawable/editbox_background"
         android:drawableLeft="@drawable/baseline_local_phone_24"
         android:drawablePadding="20dp"
@@ -63,7 +76,7 @@
         android:hint="@string/password"
         android:inputType="textPassword"
         android:layout_margin="10dp"
-        android:padding="20dp"
+        android:padding="15dp"
         android:background="@android:drawable/editbox_background"
         android:drawableLeft="@drawable/baseline_info_24"
         android:drawablePadding="20dp"
@@ -75,7 +88,7 @@
         android:hint="@string/confirm_password"
         android:inputType="textPassword"
         android:layout_margin="10dp"
-        android:padding="20dp"
+        android:padding="15dp"
         android:background="@android:drawable/editbox_background"
         android:drawableLeft="@drawable/baseline_info_24"
         android:drawablePadding="20dp"
@@ -86,7 +99,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Register"
-            android:padding="20dp"
+            android:padding="10dp"
             android:layout_margin="10dp" />
         <LinearLayout
             android:layout_width="wrap_content"
@@ -104,7 +117,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Login"
-                android:padding="20dp"
+                android:padding="10dp"
                 android:backgroundTint="@android:color/primary_text_dark"
                 android:textColor="@android:color/holo_purple"
                 android:layout_margin="10dp"/>
