@@ -123,4 +123,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         return db.rawQuery("SELECT * FROM " + TABLE_CONTEST ,null);
     }
+
+    public Cursor fetchallcontest() {
+        SQLiteDatabase db=this.getReadableDatabase();
+        return db.rawQuery("SELECT * FROM "+ TABLE_CONTEST,null);
+    }
 }

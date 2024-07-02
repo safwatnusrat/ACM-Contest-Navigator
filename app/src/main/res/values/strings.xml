@@ -23,4 +23,5 @@
     <string name="search_contest_by_name">Search Contest By Name</string>
     <string name="upcoming_contests">Upcoming Contests</string>
     <string name="view_contests">View Contests</string>
+    <string name="contests">Contests</string>
 </resources>
