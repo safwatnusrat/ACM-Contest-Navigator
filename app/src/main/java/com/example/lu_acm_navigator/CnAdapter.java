@@ -41,7 +41,7 @@ public class CnAdapter extends RecyclerView.Adapter<CnAdapter.ContestViewHolder>
             holder.dateTextView.setText(date);
             holder.timeTextView.setText(time);
             int backgroundColor = (position % 2 == 0) ?
-                    ContextCompat.getColor(context, R.color.light_purple) :
+                    ContextCompat.getColor(context, R.color.Thistle) :
                     ContextCompat.getColor(context, R.color.soap);
             holder.itemView.setBackgroundColor(backgroundColor);
         }

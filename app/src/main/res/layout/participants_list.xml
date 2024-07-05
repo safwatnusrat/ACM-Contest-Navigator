@@ -16,15 +16,15 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView
-                android:id="@+id/user_contest_name_label"
+                android:id="@+id/fullname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Contest Name: "
+                android:text="Fullname: "
                 android:textSize="16sp"
                 android:textStyle="bold"/>
 
             <TextView
-                android:id="@+id/user_contest_name"
+                android:id="@+id/fullname_insert"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="name"
@@ -39,18 +39,18 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView
-                android:id="@+id/user_contest_link_label"
+                android:id="@+id/username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Link: "
+                android:text="Username: "
                 android:textSize="16sp"
                 android:textStyle="bold"/>
 
             <TextView
-                android:id="@+id/user_contest_link"
+                android:id="@+id/username_insert"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="link"
+                android:text="username"
                 android:textSize="16sp"
                 android:textStyle="normal"
                 android:layout_marginBottom="4dp"/>
@@ -62,81 +62,27 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView
-                android:id="@+id/user_contest_date_label"
+                android:id="@+id/email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Date: "
+                android:text="Email: "
                 android:textSize="16sp"
                 android:textStyle="bold"/>
 
             <TextView
-                android:id="@+id/user_contest_date"
+                android:id="@+id/email_insert"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="YYYY-MM-DD"
+                android:text="email"
                 android:textSize="16sp"
                 android:textStyle="normal"
                 android:layout_marginBottom="4dp"/>
 
         </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/user_contest_time_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Time: "
-                android:textSize="16sp"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:id="@+id/user_contest_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="HH:MM"
-                android:textSize="16sp"
-                android:textStyle="normal"
-                android:layout_marginBottom="4dp"/>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <CheckBox
-                android:id="@+id/user_contest_participation_checkbox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Participation Status"
-                android:layout_weight="1"
-                android:textStyle="bold"
-                android:textSize="14dp">
-
-            </CheckBox>
-
-
-            <Button
-                android:id="@+id/btn_reminder"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Reminder"
-                android:backgroundTint="@color/palePink"
-                android:textColor="@color/black"
-                android:textSize="14dp"
-                android:textStyle="bold">
-            </Button>
-
-        </LinearLayout>
-
-
-
 
 
 
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
+

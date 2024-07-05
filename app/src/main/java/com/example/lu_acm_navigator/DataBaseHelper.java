@@ -12,7 +12,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_REGISTER ="register";
     public static final String TABLE_CONTEST ="contestadd" ;
     public static final String COL_ID ="id";
-    private static final String COL_FULLNAME ="fullname";
+    public static final String COL_FULLNAME ="fullname";
     public static final String COL_USERNAME="username";
     public static final String COL_EMAIL ="email";
     public static final String COL_PASSWORD ="password";
@@ -22,6 +22,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COL_DATE ="date";
     public static final String COL_TIME ="time" ;
     public static final String COL_ID1 ="ID" ;
+    private static final String TABLE_PARTICIPATION ="ParticipationTable" ;
+    private static final String COL_ID2 = "participationID";
+  private static final String COL_CONTEST_ID = "ContestID";
+//    private static final String COL_USER_ID ="UserID" ;
 
 
     public DataBaseHelper(Context context) {
@@ -71,12 +75,19 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 COL_DATE + " TEXT, " +
                 COL_TIME + " TEXT)");
 
+        db.execSQL("CREATE TABLE " + TABLE_PARTICIPATION + "("+
+                COL_ID2 + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COL_CONTEST_ID+ " TEXT)");
+                //COL_USER_ID + " INTEGER, " +
+//                "FOREIGN KEY (" + COL_CONTEST_ID + ") REFERENCES " + TABLE_CONTEST + "(" + COL_ID1 + "), " +
+//                "FOREIGN KEY (" + COL_USER_ID + ") REFERENCES " + TABLE_REGISTER + "(" + COL_ID + "))");
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_REGISTER);
+        db.execSQL("DROP TABLE IF EXISTS"+ TABLE_PARTICIPATION);
         onCreate(db);
     }
 
@@ -127,5 +138,33 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public Cursor fetchallcontest() {
         SQLiteDatabase db=this.getReadableDatabase();
         return db.rawQuery("SELECT * FROM "+ TABLE_CONTEST,null);
+    }
+
+
+//    public Cursor getAllParticipants() {
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        String query = "SELECT " +
+//                TABLE_REGISTER + "." + COL_FULLNAME + ", " +
+//                TABLE_REGISTER + "." + COL_USERNAME + ", " +
+//                TABLE_REGISTER + "." + COL_EMAIL + ", " +
+//                TABLE_REGISTER + "." + COL_PHONE + ", " +
+//                TABLE_CONTEST + "." + COL_NAME + " AS contestname, " +
+//                TABLE_CONTEST + "." + COL_CONTEST_LINK + " AS contestlink, " +
+//                TABLE_CONTEST + "." + COL_DATE + " AS date, " +
+//                TABLE_CONTEST + "." + COL_TIME + " AS time " +
+//                "FROM " + TABLE_PARTICIPATION +
+//                " INNER JOIN " + TABLE_REGISTER +
+//                " ON " + TABLE_PARTICIPATION + "." + COL_USER_ID + " = " + TABLE_REGISTER + "." + COL_ID +
+//                " INNER JOIN " + TABLE_CONTEST +
+//                " ON " + TABLE_PARTICIPATION + "." + COL_CONTEST_ID + " = " + TABLE_CONTEST + "." + COL_ID1;
+//        return db.rawQuery(query, null);
+//    }
+
+    public boolean addParticipant(long contestId) {
+        SQLiteDatabase db=this.getWritableDatabase();
+        ContentValues values=new ContentValues();
+        values.put(COL_CONTEST_ID,contestId);
+        long result=db.insert(TABLE_PARTICIPATION,null,values);
+        return result!=-1;
     }
 }

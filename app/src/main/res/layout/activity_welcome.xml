@@ -16,15 +16,7 @@
         android:layout_margin="25dp"
         android:src="@drawable/new_remove_logo"
         android:layout_gravity="center_horizontal"/>
-    <TextView
-        android:id="@+id/welcome"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/welcome"
-        android:textSize="20dp"
-        android:layout_margin="20dp"
-        android:textStyle="bold"
-        android:gravity="center"/>
+
     <TextView
         android:id="@+id/welcome1"
         android:layout_width="match_parent"
@@ -33,9 +25,13 @@
         android:textSize="20dp"
         android:layout_margin="20dp"
         android:gravity="center"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="100dp" />
+
     <Button
         android:id="@+id/btn_get_started"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/get_started"
         android:padding="20dp"

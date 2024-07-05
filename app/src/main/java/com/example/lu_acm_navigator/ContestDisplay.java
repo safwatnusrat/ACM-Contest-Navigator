@@ -28,7 +28,7 @@ public class ContestDisplay extends AppCompatActivity {
         userupcomingcontestRecyclerview =findViewById(R.id.user_contest_view);
         userupcomingcontestRecyclerview.setLayoutManager(new LinearLayoutManager(this));
         databaseHelper=new DataBaseHelper(this);
-        contestAdapter = new ContestAdapter(this, null);
+        contestAdapter = new ContestAdapter(this,null);
         userupcomingcontestRecyclerview.setAdapter(contestAdapter);
         displayycontest();
 
