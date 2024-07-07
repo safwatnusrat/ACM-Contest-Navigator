@@ -20,7 +20,7 @@ public class AdminActivity extends AppCompatActivity {
         Button btnviewdetails=findViewById(R.id.btn_view_details);
         Button btnupdatecontest=findViewById(R.id.btn_update_contest);
         Button btndeletecontest=findViewById(R.id.btn_delete_contest);
-        Button btnparticipationlist=findViewById(R.id.btn_participation_list);
+        //Button btnparticipationlist=findViewById(R.id.btn_participation_list);
 
 
         btnaddcontest.setOnClickListener(v-> {
@@ -39,9 +39,9 @@ public class AdminActivity extends AppCompatActivity {
             Intent intent =new Intent(AdminActivity.this,DeleteActivity.class);
             startActivity(intent);
         });
-        btnparticipationlist.setOnClickListener(v->{
-            Intent intent=new Intent(AdminActivity.this,AdminViewParticipantsActivity.class);
-        });
+//        btnparticipationlist.setOnClickListener(v->{
+//            Intent intent=new Intent(AdminActivity.this,AdminViewParticipantsActivity.class);
+//        });
 
 
 

@@ -21,12 +21,8 @@ import java.util.Locale;
 
 public class AddContestctivity extends AppCompatActivity {
 
-    private static final int REQUEST_IMAGE_PICK=1;
     private EditText ContestLinkEditText;
     private EditText ContestnameEditText;
-//    private EditText DateEditText;
-//    private EditText TimeEditText;
-
     private Button AddContestButton;
     private DataBaseHelper dataBaseHelper;
     private Button pickDateButton;
