@@ -32,12 +32,14 @@ public class ContestAdapter extends RecyclerView.Adapter<ContestAdapter.ContestV
     private Context context;
     private Cursor cursor;
     private DataBaseHelper dataBaseHelper;
+    private String username;
 
-    public ContestAdapter(Context context,Cursor cursor)
+    public ContestAdapter(Context context,Cursor cursor,String username)
     {
         this.context=context;
         this.cursor=cursor;
         this.dataBaseHelper=new DataBaseHelper(context);
+        this.username=username;
     }
 
 
@@ -61,17 +63,59 @@ public class ContestAdapter extends RecyclerView.Adapter<ContestAdapter.ContestV
             holder.linkTextView.setText(link);
             holder.dateTextView.setText(date);
             holder.timeTextView.setText(time);
+//            holder.participationCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+//                if (isChecked) {
+//                    long contestId= cursor.getLong(cursor.getColumnIndexOrThrow(DataBaseHelper.COL_ID1));
+//                    boolean isAdded = dataBaseHelper.addParticipant(contestId);
+//                    if (isAdded) {
+//                        Toast.makeText(context, "Registered for the contest", Toast.LENGTH_SHORT).show();
+//                    } else {
+//                        Toast.makeText(context, "Failed to register", Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//            });
+//            holder.participationCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+//                if (isChecked) {
+//                    long contestId = cursor.getLong(cursor.getColumnIndexOrThrow(DataBaseHelper.COL_ID1));
+//                    long userId = dataBaseHelper.getUserIdByUsername(username);
+//                    if (userId != -1) {
+//                        boolean isAdded = dataBaseHelper.addParticipant(contestId,userId);
+//                        if (isAdded) {
+//                            Toast.makeText(context, "Registered for the contest", Toast.LENGTH_SHORT).show();
+//                        } else {
+//                            Toast.makeText(context, "Failed to register", Toast.LENGTH_SHORT).show();
+//                        }
+//                    } else {
+//                        Toast.makeText(context, "User not found", Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//            });
             holder.participationCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
                 if (isChecked) {
-                    long contestId= cursor.getLong(cursor.getColumnIndexOrThrow(DataBaseHelper.COL_ID1));
-                    boolean isAdded = dataBaseHelper.addParticipant(contestId);
-                    if (isAdded) {
-                        Toast.makeText(context, "Registered for the contest", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(context, "Failed to register", Toast.LENGTH_SHORT).show();
+                    try {
+                        long contestId = cursor.getLong(cursor.getColumnIndexOrThrow(DataBaseHelper.COL_ID1));
+                        long userId = dataBaseHelper.getUserIdByUsername(username);
+
+                        Log.d("ContestAdapter", "Contest ID: " + contestId + ", User ID: " + userId); // Log contest ID and user ID
+
+                        if (userId != -1) {
+                            boolean isAdded = dataBaseHelper.addParticipant(contestId, userId);
+                            if (isAdded) {
+                                Toast.makeText(context, "Registered for the contest", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(context, "Failed to register", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(context, "User not found", Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (Exception e) {
+                        Log.e("ContestAdapter", "Error registering for contest", e);
+                        Toast.makeText(context, "Error registering for contest", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
+
+
             holder.reminderButton.setOnClickListener(v -> {
                 showDatePicker(name);
             });

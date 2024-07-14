@@ -25,7 +25,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_PARTICIPATION ="ParticipationTable" ;
     private static final String COL_ID2 = "participationID";
   private static final String COL_CONTEST_ID = "ContestID";
-//    private static final String COL_USER_ID ="UserID" ;
+    private static final String COL_USER_ID ="UserID" ;
 
 
     public DataBaseHelper(Context context) {
@@ -75,12 +75,15 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 COL_DATE + " TEXT, " +
                 COL_TIME + " TEXT)");
 
-        db.execSQL("CREATE TABLE " + TABLE_PARTICIPATION + "("+
+        db.execSQL("CREATE TABLE " + TABLE_PARTICIPATION + " (" +
                 COL_ID2 + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COL_CONTEST_ID+ " TEXT)");
-                //COL_USER_ID + " INTEGER, " +
-//                "FOREIGN KEY (" + COL_CONTEST_ID + ") REFERENCES " + TABLE_CONTEST + "(" + COL_ID1 + "), " +
-//                "FOREIGN KEY (" + COL_USER_ID + ") REFERENCES " + TABLE_REGISTER + "(" + COL_ID + "))");
+                COL_CONTEST_ID + " INTEGER, " +
+                COL_USER_ID + " INTEGER, " +
+                "FOREIGN KEY (" + COL_CONTEST_ID + ") REFERENCES " + TABLE_CONTEST + "(" + COL_ID1 + "), " +
+                "FOREIGN KEY (" + COL_USER_ID + ") REFERENCES " + TABLE_REGISTER + "(" + COL_ID + "), " +
+                "UNIQUE(" + COL_CONTEST_ID + ", " + COL_USER_ID + "))"
+        );
+
 
     }
 
@@ -141,30 +144,37 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
 
-//    public Cursor getAllParticipants() {
-//        SQLiteDatabase db = this.getReadableDatabase();
-//        String query = "SELECT " +
-//                TABLE_REGISTER + "." + COL_FULLNAME + ", " +
-//                TABLE_REGISTER + "." + COL_USERNAME + ", " +
-//                TABLE_REGISTER + "." + COL_EMAIL + ", " +
-//                TABLE_REGISTER + "." + COL_PHONE + ", " +
-//                TABLE_CONTEST + "." + COL_NAME + " AS contestname, " +
-//                TABLE_CONTEST + "." + COL_CONTEST_LINK + " AS contestlink, " +
-//                TABLE_CONTEST + "." + COL_DATE + " AS date, " +
-//                TABLE_CONTEST + "." + COL_TIME + " AS time " +
-//                "FROM " + TABLE_PARTICIPATION +
-//                " INNER JOIN " + TABLE_REGISTER +
-//                " ON " + TABLE_PARTICIPATION + "." + COL_USER_ID + " = " + TABLE_REGISTER + "." + COL_ID +
-//                " INNER JOIN " + TABLE_CONTEST +
-//                " ON " + TABLE_PARTICIPATION + "." + COL_CONTEST_ID + " = " + TABLE_CONTEST + "." + COL_ID1;
-//        return db.rawQuery(query, null);
-//    }
+     public boolean addParticipant(long contestId, long userId) {
+          SQLiteDatabase db = this.getWritableDatabase();
+          ContentValues values = new ContentValues();
+          values.put(COL_CONTEST_ID, contestId);
+          values.put(COL_USER_ID, userId);
 
-    public boolean addParticipant(long contestId) {
-        SQLiteDatabase db=this.getWritableDatabase();
-        ContentValues values=new ContentValues();
-        values.put(COL_CONTEST_ID,contestId);
-        long result=db.insert(TABLE_PARTICIPATION,null,values);
-        return result!=-1;
+          long result = db.insert(TABLE_PARTICIPATION, null, values);
+          return result != -1;
+}
+    
+
+    public long getUserIdByUsername(String username) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_REGISTER, new String[]{COL_ID},
+                "username = ?", new String[]{username}, null, null, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            long userId = cursor.getLong(cursor.getColumnIndexOrThrow(COL_ID));
+            cursor.close();
+            return userId;
+        } else {
+            return -1;
+        }
     }
+    public Cursor getParticipantsGroupedByContest() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT c.contestname AS contest_name, u.username, u.email " +
+                "FROM register u " +
+                "JOIN ParticipationTable cp ON u.id = cp.UserID " +
+                "JOIN contestadd c ON cp.ContestID = c.ID";
+        return db.rawQuery(query, null);
+    }
+
 }

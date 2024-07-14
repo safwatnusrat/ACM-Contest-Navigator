@@ -12,13 +12,20 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class ParticipationAdapter extends RecyclerView.Adapter<ParticipationAdapter.ParticipantViewHolder> {
-    private Context context;
-    private Cursor cursor;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
-    public ParticipationAdapter(Context context, Cursor cursor) {
+public class ParticipationAdapter extends RecyclerView.Adapter<ParticipationAdapter.ParticipantViewHolder> {
+
+    private Context context;
+    private Map<String, List<Participant>> contestParticipantsMap;
+    private List<String> contestNames;
+
+    public ParticipationAdapter(Context context, Map<String, List<Participant>> contestParticipantsMap) {
         this.context = context;
-        this.cursor = cursor;
+        this.contestParticipantsMap = contestParticipantsMap;
+        this.contestNames = new ArrayList<>(contestParticipantsMap.keySet());
     }
 
     @NonNull
@@ -30,47 +37,35 @@ public class ParticipationAdapter extends RecyclerView.Adapter<ParticipationAdap
 
     @Override
     public void onBindViewHolder(@NonNull ParticipantViewHolder holder, int position) {
-        if (cursor != null && cursor.moveToPosition(position)) {
-            String fullname = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseHelper.COL_FULLNAME));
-            String username = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseHelper.COL_USERNAME));
-            String email = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseHelper.COL_EMAIL));
+        String contestName = contestNames.get(position);
+        List<Participant> participants = contestParticipantsMap.get(contestName);
 
-            holder.fullnameTextView.setText(fullname);
-            holder.usernameTextView.setText(username);
-            holder.emailTextView.setText(email);
-
-            int backgroundColor = (position % 2 == 0) ?
-                    ContextCompat.getColor(context, R.color.Thistle) :
-                    ContextCompat.getColor(context, R.color.soap);
-            holder.itemView.setBackgroundColor(backgroundColor);
+        holder.contestNameTextView.setText("Contest Name: " +contestName);
+        StringBuilder participantsInfo = new StringBuilder();
+        for (Participant participant : participants) {
+            participantsInfo.append("Username: ").append(participant.username)
+                    .append("\nEmail: ").append(participant.email).append("\n\n");
         }
+        holder.participantsTextView.setText(participantsInfo.toString().trim());
+        int backgroundColor = (position % 2 == 0) ?
+                ContextCompat.getColor(context, R.color.Thistle) :
+                ContextCompat.getColor(context, R.color.soap);
+        holder.itemView.setBackgroundColor(backgroundColor);
     }
 
     @Override
     public int getItemCount() {
-        return cursor != null ? cursor.getCount() : 0;
-    }
-
-    public void swapCursor(Cursor newCursor) {
-        if (cursor != null) {
-            cursor.close();
-        }
-        cursor = newCursor;
-        if (newCursor != null) {
-            notifyDataSetChanged();
-        }
+        return contestNames.size();
     }
 
     static class ParticipantViewHolder extends RecyclerView.ViewHolder {
-        TextView fullnameTextView;
-        TextView usernameTextView;
-        TextView emailTextView;
+        TextView contestNameTextView;
+        TextView participantsTextView;
 
         public ParticipantViewHolder(@NonNull View itemView) {
             super(itemView);
-            fullnameTextView = itemView.findViewById(R.id.fullname_insert);
-            usernameTextView = itemView.findViewById(R.id.username_insert);
-            emailTextView = itemView.findViewById(R.id.email_insert);
+            contestNameTextView = itemView.findViewById(R.id.contest_name);
+            participantsTextView = itemView.findViewById(R.id.participants);
         }
     }
 }

@@ -24,11 +24,12 @@ public class ContestDisplay extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contest_display);
+        String username = getIntent().getStringExtra("Username");
 
         userupcomingcontestRecyclerview =findViewById(R.id.user_contest_view);
         userupcomingcontestRecyclerview.setLayoutManager(new LinearLayoutManager(this));
         databaseHelper=new DataBaseHelper(this);
-        contestAdapter = new ContestAdapter(this,null);
+        contestAdapter = new ContestAdapter(this,null,username);
         userupcomingcontestRecyclerview.setAdapter(contestAdapter);
         displayycontest();
 
@@ -48,3 +49,34 @@ public class ContestDisplay extends AppCompatActivity {
         }
     }
 }
+//public class ContestDisplay extends AppCompatActivity {
+//    private static final String TAG = "ContestDisplay";
+//    private RecyclerView userUpcomingContestRecyclerView;
+//    private DataBaseHelper databaseHelper;
+//    private ContestAdapter contestAdapter;
+//
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_contest_display);
+//        String username = getIntent().getStringExtra("Username");  // Correct extra name
+//
+//        userUpcomingContestRecyclerView = findViewById(R.id.user_contest_view);
+//        userUpcomingContestRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        databaseHelper = new DataBaseHelper(this);
+//        contestAdapter = new ContestAdapter(this, null, username);
+//        userUpcomingContestRecyclerView.setAdapter(contestAdapter);
+//        displayContest();
+//    }
+//
+//    private void displayContest() {
+//        Cursor cursor = databaseHelper.fetchallcontest();
+//        if (cursor != null && cursor.getCount() > 0) {
+//            Log.d(TAG, "Number Of Contests: " + cursor.getCount());
+//            contestAdapter.swapCursor(cursor);
+//        } else {
+//            Log.d(TAG, "NO Contest Available");
+//            Toast.makeText(this, "No Contest Available!", Toast.LENGTH_SHORT).show();
+//        }
+//    }
+//}

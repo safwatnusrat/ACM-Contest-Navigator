@@ -55,7 +55,7 @@ public class DeleteActivity extends AppCompatActivity {
             dldateEditText.setText(String.valueOf(date));
             dltimeEditText.setText(String.valueOf(time));
             cursor.close();
-            Toast.makeText(this, "Insert successfully", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Contest Deleted", Toast.LENGTH_SHORT).show();
 
 
         } else {
